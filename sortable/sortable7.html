@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+  <script src="http://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+  <link rel="stylesheet" href="http://jqueryui.com/resources/demos/style.css">
+  <style>
+    *{
+      margin:0;
+      padding:0;
+    }
+    body {
+      min-width: 520px;
+    }
+    .column {
+      width: 170px;
+      float: left;
+      padding-bottom: 100px;
+    }
+    .portlet {
+      margin: 0 1em 1em 0;
+      padding: 0.3em;
+      height:100px;
+      border:1px solid #ccc;
+      margin:10px;
+    }
+    .portlet-header {
+      padding: 0.2em 0.3em;
+      margin-bottom: 0.5em;
+      position: relative;
+      border-bottom:1px solid #ccc;
+      border-radius: 0;
+    }
+    .portlet-toggle {
+      position: absolute;
+      top: 50%;
+      right: 0;
+      margin-top: -8px;
+    }
+    .portlet-content {
+      padding: 0.4em;
+    }
+    .portlet-placeholder {
+      border: 1px dotted black;
+      margin: 0 1em 1em 0;
+      height: 50px;
+    }
+    .active{
+      background: red;
+    }
+  </style>
+  <title>Document</title>
+</head>
+<body>
+  <h1>门户组件</h1>
+  <!--<ul>
+    <li class="column">
+      <div class="portlet">
+        <div class="portlet-header">订阅</div>
+        <div class="portlet-content">1A</div>
+      </div>
+    </li>
+  </ul>-->
+  <div class="column">
+
+    <div class="portlet">
+      <div class="portlet-header">订阅</div>
+      <div class="portlet-content">1A</div>
+    </div>
+
+    <div class="portlet">
+      <div class="portlet-header">新闻</div>
+      <div class="portlet-content">1B</div>
+    </div>
+
+  </div>
+
+  <div class="column">
+
+    <div class="portlet">
+      <div class="portlet-header">购物</div>
+      <div class="portlet-content">2A</div>
+    </div>
+
+  </div>
+
+  <div class="column">
+
+    <div class="portlet">
+      <div class="portlet-header">链接</div>
+      <div class="portlet-content">3A</div>
+    </div>
+
+    <div class="portlet">
+      <div class="portlet-header">图像</div>
+      <div class="portlet-content">3B</div>
+    </div>
+  </div>
+</body>
+<script>
+  $(function() {
+    $( ".column" ).sortable({
+      connectWith: ".column",
+      handle: ".portlet-header",
+      cancel: ".portlet-toggle",
+      placeholder: "portlet-placeholder ui-corner-all",
+      opacity: .5,
+      revert: 100,//动效时间
+      activate: function (event, ui) {
+
+      },
+      stop: function (event, ui) {
+
+      },
+      update: function (event, ui) {
+        // 更新排序
+        var sort_data = []
+        $(".column").each(function () {
+          var $column = $(this).attr('id')
+          $(this).find(".edit-panel").each(function (i, dom) {
+            sort_data.push({
+              model_id: $(dom).attr('id'),
+              module_order: i,
+              col: $column
+            })
+          })
+        });
+        //ajax
+      }
+    });
+  });
+</script>
+</html>

@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+  <script src="http://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+  <link rel="stylesheet" href="http://jqueryui.com/resources/demos/style.css">
+  <style>
+    *{
+      margin:0;
+      padding:0;
+    }
+    ul{
+      overflow: hidden;
+      min-width:100%;
+      min-height:50px;
+      background:rgba(100,100,100,.4);
+      margin-top:10px;
+    }
+    li{
+      float:left;
+      list-style: none;
+      width:200px;
+      margin:10px;
+      border:1px solid #ccc;
+      background:#fff;
+      border-radius: 5px;
+    }
+    a{
+      text-decoration: none;
+      color:#333;
+    }
+    header{
+      width:100%;
+      height:50px;
+      line-height: 50px;
+      font-size:20px;
+      text-indent:1em;
+      background:#ccc;
+    }
+    div{
+      width:100%;
+      height:100px;
+      line-height:100px;
+      text-align:center;
+      font-size:50px;
+      font-weight:bold;
+    }
+    .placeholder_panel{
+      width:198px;
+      height:140px;
+      border:2px dotted red;
+    }
+  </style>
+  <title>Document</title>
+</head>
+<body>
+<h1>处理空列表</h1>
+<pre>
+  处理空列表
+通过把 选项设置为 false，来阻止一个列表中的所有条目被放置到一个单独的空列表中。默认情况下，sortable 条目可被放置到空的列表中。
+
+</pre>
+<ul id="sortable1" class="droptrue">
+  <li class="item ui-state-default"><a href="javascript:;"><header>header</header><div>1</div></a></li>
+  <li class="item"><a href="javascript:;"><header>header</header><div>2</div></a></li>
+  <li class="item"><a href="javascript:;"><header>header</header><div>3</div></a></li>
+  <li class="item"><a href="javascript:;"><header>header</header><div>4</div></a></li>
+  <li class="item"><a href="javascript:;"><header>header</header><div>5</div></a></li>
+</ul>
+<ul id="sortable2" class="dropfalse">
+  <li class="item"><a href="javascript:;"><header>header</header><div>A</div></a></li>
+  <li class="item"><a href="javascript:;"><header>header</header><div>B</div></a></li>
+  <li class="item"><a href="javascript:;"><header>header</header><div>C</div></a></li>
+  <li class="item"><a href="javascript:;"><header>header</header><div>D</div></a></li>
+  <li class="item"><a href="javascript:;"><header>header</header><div>E</div></a></li>
+</ul>
+<ul id="sortable3" class="droptrue"></ul>
+</body>
+<script>
+  $(function() {
+    $(function() {
+      $( "ul.droptrue" ).sortable({
+        connectWith: "ul"
+      });
+
+      $( "ul.dropfalse" ).sortable({
+        connectWith: "ul",
+        dropOnEmpty: false
+      });
+
+      $( "#sortable1, #sortable2, #sortable3" ).disableSelection();
+    });
+  });
+</script>
+</html>
